@@ -3,10 +3,14 @@ const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const glob = require('glob');
+
+
 // const sass = require('node-sass');
 
 // Hard code this to production but can be adapted to accept args to change env.
 const mode = 'production';
+
+
 
 module.exports = {
   mode,
