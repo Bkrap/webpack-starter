@@ -3,7 +3,7 @@ const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const glob = require('glob');
-
+const CopyPlugin = require("copy-webpack-plugin");
 
 // const sass = require('node-sass');
 
@@ -63,6 +63,11 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: '[name].css',
       chunkFilename: '[id].css',
-    })
+    }),
+    new CopyPlugin({
+      patterns: [
+        { from: "./node_modules/bootstrap/**/*", to: "../src/vendor/" },
+      ],
+    }),
   ]
 }

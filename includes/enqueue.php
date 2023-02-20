@@ -5,6 +5,8 @@
  * @since 1.0.0.
  * Author: Bruno Krapljan
  */
+
+ 
 add_action( 'wp_enqueue_scripts', 'generic_theme_scripts' );
 
 function generic_theme_scripts() {

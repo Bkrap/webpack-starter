@@ -30,55 +30,6 @@ function generic_setup()
 }
 
 
-add_action('wp_footer', 'generic_footer');
-function generic_footer()
-{
-    ?>
-<script>
-jQuery(document).ready(function($) {
-$(".before").on("focus", function() {
-$(".last").focus();
-});
-$(".after").on("focus", function() {
-$(".first").focus();
-});
-$(".menu-toggle").on("keypress click", function(e) {
-if (e.which == 13 || e.type === "click") {
-e.preventDefault();
-$("#menu").toggleClass("toggled");
-$(".looper").toggle();
-}
-});
-$(document).keyup(function(e) {
-if (e.keyCode == 27) {
-if ($("#menu").hasClass("toggled")) {
-$("#menu").toggleClass("toggled");
-}
-}
-});
-$("img.no-logo").each(function() {
-var alt = $(this).attr("alt");
-$(this).replaceWith(alt);
-});
-});
-</script>
-<?php
-}
-add_filter('document_title_separator', 'generic_document_title_separator');
-function generic_document_title_separator($sep)
-{
-    $sep = esc_html('|');
-    return $sep;
-}
-add_filter('the_title', 'generic_title');
-function generic_title($title)
-{
-    if ($title == '') {
-        return esc_html('...');
-    } else {
-        return wp_kses_post($title);
-    }
-}
 function generic_schema_type()
 {
     $schema = 'https://schema.org/';
@@ -166,6 +117,8 @@ function generic_custom_pings($comment)
 <li <?php comment_class(); ?> id="li-comment-<?php comment_ID(); ?>"><?php echo esc_url(comment_author_link()); ?></li>
 <?php
 }
+
+
 add_filter('get_comments_number', 'generic_comment_count', 0);
 function generic_comment_count($count)
 {
